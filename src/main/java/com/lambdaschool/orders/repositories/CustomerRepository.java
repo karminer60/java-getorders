@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long>
 {
-    Customer findByNameLike (String subname);
+    Customer findByCustnameIgnoringCase(String custname);
 
     @Query(value = "Select c.custname as name, o.ordnum as orders FROM customers c LEFT JOIN orders o ON c.custcode = o.custcode", nativeQuery = true)
     List<Orders> getOrders();
 
-    List<Customer> findByNameContainingIgnoringCase(String subname);
+    List<Customer> findByCustnameContainingIgnoringCase(String subname);
 }
 
 

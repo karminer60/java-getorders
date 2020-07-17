@@ -47,7 +47,7 @@ public class CustomerServicesImpl implements CustomerServices
     @Override
     public List<Customer> findByNameLike(String subname)
     {
-        return customerrepos.findByNameContainingIgnoringCase(subname);
+        return customerrepos.findByCustnameContainingIgnoringCase(subname);
     }
 
     @Override

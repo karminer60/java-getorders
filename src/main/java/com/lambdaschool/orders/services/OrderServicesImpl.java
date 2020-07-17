@@ -5,6 +5,7 @@ import com.lambdaschool.orders.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,5 +25,12 @@ public class OrderServicesImpl implements OrderServices
 
         orderrepos.findAll().iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    @Override
+    public Order findById(long id)
+    {
+        return orderrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Restaurant " + id + " does not exist"));
     }
 }
